@@ -145,6 +145,8 @@
     <string name="setting_failed">设置失败: %s</string>
     <string name="drop_privileges">降权激活</string>
     <string name="drop_privileges_subtitle">Root 启动后降权到 Shell 用户运行</string>
+    <string name="wireless_debugging_su">无线调试提权 su</string>
+    <string name="wireless_debugging_su_subtitle">尝试通过无线调试使用 su 提权启动服务</string>
     <string name="daemon_enabled">进程守护</string>
     <string name="daemon_enabled_subtitle">双进程互守，自动重启</string>
     <string name="add_to_home_screen">添加到桌面</string>

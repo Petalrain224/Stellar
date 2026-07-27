@@ -49,6 +49,7 @@ import androidx.compose.material.icons.filled.Security
 import androidx.compose.material.icons.filled.SettingsEthernet
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.SystemUpdate
+import androidx.compose.material.icons.filled.Tag
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.BasicAlertDialog
 import androidx.compose.material3.Button
@@ -100,6 +101,7 @@ import roro.stellar.manager.StellarSettings.DROP_PRIVILEGES
 import roro.stellar.manager.StellarSettings.SHIZUKU_COMPAT_ENABLED
 import roro.stellar.manager.StellarSettings.TCPIP_PORT
 import roro.stellar.manager.StellarSettings.TCPIP_PORT_ENABLED
+import roro.stellar.manager.StellarSettings.WIRELESS_DEBUGGING_SU
 import roro.stellar.manager.compat.ClipboardUtils
 import roro.stellar.manager.db.AppDatabase
 import roro.stellar.manager.db.ConfigEntity
@@ -211,6 +213,10 @@ fun SettingsScreen(
 
     var dropPrivileges by remember {
         mutableStateOf(preferences.getBoolean(DROP_PRIVILEGES, false))
+    }
+
+    var wirelessDebuggingSu by remember {
+        mutableStateOf(preferences.getBoolean(WIRELESS_DEBUGGING_SU, false))
     }
 
     var daemonEnabled by remember {
@@ -493,6 +499,19 @@ fun SettingsScreen(
                             } catch (_: Exception) {
                             }
                         }
+                    }
+                )
+            }
+
+            item {
+                SettingsSwitchCard(
+                    icon = Icons.Default.Tag,
+                    title = stringResource(R.string.wireless_debugging_su),
+                    subtitle = stringResource(R.string.wireless_debugging_su_subtitle),
+                    checked = wirelessDebuggingSu,
+                    onCheckedChange = { newValue ->
+                        wirelessDebuggingSu = newValue
+                        savePreference(WIRELESS_DEBUGGING_SU, newValue)
                     }
                 )
             }

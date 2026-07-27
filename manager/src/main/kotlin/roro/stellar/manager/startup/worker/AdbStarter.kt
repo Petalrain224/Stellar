@@ -51,7 +51,7 @@ object AdbStarter {
             try {
                 AdbClient(host, activePort, key).use { client ->
                     client.connect()
-                    client.shellCommand(Starter.internalCommand) { /* consume output */ }
+                    client.shellCommand(Starter.wirelessDebuggingCommand) { /* consume output */ }
                 }
                 return true
             } catch (_: java.io.EOFException) {

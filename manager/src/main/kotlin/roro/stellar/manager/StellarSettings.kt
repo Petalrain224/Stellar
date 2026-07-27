@@ -15,6 +15,7 @@ object StellarSettings {
     const val THEME_MODE = "theme_mode"
     const val START_PAGE = "start_page"
     const val DROP_PRIVILEGES = "drop_privileges"
+    const val WIRELESS_DEBUGGING_SU = "wireless_debugging_su"
     const val SHIZUKU_COMPAT_ENABLED = "shizuku_compat_enabled"
     const val ACCESSIBILITY_AUTO_START_PROMPTED = "accessibility_auto_start_prompted"
     const val LAST_VERSION_CODE = "last_version_code"

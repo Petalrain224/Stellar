@@ -146,6 +146,8 @@
     <string name="setting_failed">Setting failed: %s</string>
     <string name="drop_privileges">Drop Privileges</string>
     <string name="drop_privileges_subtitle">Run as shell user after root start</string>
+    <string name="wireless_debugging_su">Wireless Debugging su Elevation</string>
+    <string name="wireless_debugging_su_subtitle">Try to start the service with su over wireless debugging</string>
     <string name="daemon_enabled">Process Daemon</string>
     <string name="daemon_enabled_subtitle">Mutual process monitoring for auto-restart</string>
     <string name="add_to_home_screen">Add to Home</string>
