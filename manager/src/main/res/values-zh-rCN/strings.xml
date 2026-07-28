@@ -197,6 +197,11 @@
     <string name="mode_click_execute_desc">手动点击执行命令</string>
     <string name="mode_follow_service">跟随服务</string>
     <string name="mode_follow_service_desc">服务启动时自动执行</string>
+    <string name="mode_follow_service_once">跟随服务执行指定次数</string>
+    <string name="mode_follow_service_once_desc">服务启动时按设定次数执行</string>
+    <string name="command_max_executions">执行次数</string>
+    <string name="command_enabled">启用</string>
+    <string name="command_execution_count">总计 %1$d/%2$d 次（成功 %3$d 次，失败 %4$d 次）</string>
     <string name="command">命令</string>
     <string name="quick_execute">快速执行</string>
     <string name="add_command">添加命令</string>

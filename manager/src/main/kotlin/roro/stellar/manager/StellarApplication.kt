@@ -58,9 +58,14 @@ class StellarApplication : Application() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val commands = AppDatabase.get(context).commandDao().getAll()
-                    .filter { it.mode == "FOLLOW_SERVICE" }
+                    .filter { it.mode == "FOLLOW_SERVICE" || (it.mode == "FOLLOW_SERVICE_ONCE" && it.enabled && it.executionCount < it.maxExecutions) }
                 commands.forEach { cmd ->
                     try {
+                        if (cmd.mode == "FOLLOW_SERVICE_ONCE" &&
+                            AppDatabase.get(context).commandDao().claimExecution(cmd.id) == 0
+                        ) {
+                            return@forEach
+                        }
                         LOGGER.d("执行跟随服务命令: title=${cmd.title}, command=${cmd.command}")
                         val process = Stellar.newProcess(arrayOf("sh", "-c", cmd.command), null, null)
                         val stdout = async(Dispatchers.IO) {
@@ -74,11 +79,20 @@ class StellarApplication : Application() {
                         val stderrText = stderr.await()
                         if (exitCode != 0) {
                             LOGGER.w("命令执行失败: title=${cmd.title}, 退出码=$exitCode, stdout=$stdoutText, stderr=$stderrText")
+                            if (cmd.mode == "FOLLOW_SERVICE_ONCE") {
+                                AppDatabase.get(context).commandDao().recordExecution(cmd.id, success = 0, failure = 1)
+                            }
                         } else {
                             LOGGER.d("命令执行完成: ${cmd.title}, 退出码=$exitCode")
+                            if (cmd.mode == "FOLLOW_SERVICE_ONCE") {
+                                AppDatabase.get(context).commandDao().recordExecution(cmd.id, success = 1, failure = 0)
+                            }
                         }
                     } catch (e: Exception) {
                         LOGGER.e("命令执行失败: ${cmd.title}", e)
+                        if (cmd.mode == "FOLLOW_SERVICE_ONCE") {
+                            AppDatabase.get(context).commandDao().recordExecution(cmd.id, success = 0, failure = 1)
+                        }
                     }
                 }
             } catch (e: Exception) {

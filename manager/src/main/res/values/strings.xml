@@ -198,6 +198,11 @@
     <string name="mode_click_execute_desc">Tap to run commands manually</string>
     <string name="mode_follow_service">Service Startup</string>
     <string name="mode_follow_service_desc">Run automatically when service starts</string>
+    <string name="mode_follow_service_once">Run Limited Times with Service</string>
+    <string name="mode_follow_service_once_desc">Run a selected number of times when the service starts</string>
+    <string name="command_max_executions">Maximum executions</string>
+    <string name="command_enabled">Enabled</string>
+    <string name="command_execution_count">Total %1$d/%2$d (success %3$d, failed %4$d)</string>
     <string name="command">Commands</string>
     <string name="quick_execute">Quick Run</string>
     <string name="add_command">Add Command</string>
